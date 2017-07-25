@@ -1,6 +1,6 @@
 # Global Execution Context Phases
-##PHASE 1
-###Execution Context is Created (CREATION PHASE)
+## PHASE 1
+### Execution Context is Created (CREATION PHASE)
 Creates Global Object - this - Outer Environment
 Sets up Memory Space for Variables and Functions "Hoisting"
 
@@ -21,14 +21,18 @@ function b() {
 
 console.log(a);
 
-/*the var a above is undefined because var a is set to undefined due to hoisting. b function outputs because functions are fully loaded into memory.*/
+/*
+the var a above is undefined because var a
+is set to undefined due to hoisting. b function
+outputs because functions are fully loaded into memory.
+*/
 ```
 
-##PHASE 2
-###Execution Context is Executed (EXECUTION PHASE)
+## PHASE 2
+### Execution Context is Executed (EXECUTION PHASE)
 Executes code line by line
 
-#Javascript Concepts
+# Javascript Concepts
 Javascript is...
 
 Single Threaded:
