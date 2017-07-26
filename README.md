@@ -43,4 +43,33 @@ Synchronous:
 One at a time, one line at a time and in order
 
 
+# Variable Environments
+Where the variables live, and how they relate to each other in memory
 
+# Scope
+Where a variable is available in your code
+
+# Let
+can use let instead of var
+let allows for block scoping
+
+# Asynchronous (Callbacks)
+more than one at a time (javascript is synchronous)
+There are other engines outside of the javascript engine.
+Rendering engine, HTTP Request engine. Javascript Engine is synchronous.
+Event Queue (notifications, events) - the browser places events on the queue (ie. click event, HTTP Request), gets looked at when the execution context is empty. Then creates a context for the clickHandler event. The browser asynchronously puts events in the event queue, but javascript engine is still executing synchronously.
+
+# Dynamic Typing
+You don't tell the engine what type of data a variable holds,
+it figures it out while your code is running.
+
+## Primitive Type
+A type of data that represents a single value, that is not an object
+
+### Six Primitive Types
+*undefined - lack of existence
+*null - represents lack of existence (you can set a variable to this)
+*boolean - true or false
+*number - floating point number, there is always a decimal, makes math weird
+*string - a sequence of characters
+*symbol - used in ES6 (not supported by all browsers)
