@@ -67,9 +67,9 @@ it figures it out while your code is running.
 A type of data that represents a single value, that is not an object
 
 ### Six Primitive Types
-*undefined - lack of existence
-*null - represents lack of existence (you can set a variable to this)
-*boolean - true or false
-*number - floating point number, there is always a decimal, makes math weird
-*string - a sequence of characters
-*symbol - used in ES6 (not supported by all browsers)
+* undefined - lack of existence
+* null - represents lack of existence (you can set a variable to this)
+* boolean - true or false
+* number - floating point number, there is always a decimal, makes math weird
+* string - a sequence of characters
+* symbol - used in ES6 (not supported by all browsers)
