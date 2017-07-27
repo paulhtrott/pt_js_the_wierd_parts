@@ -73,3 +73,49 @@ A type of data that represents a single value, that is not an object
 * number - floating point number, there is always a decimal, makes math weird
 * string - a sequence of characters
 * symbol - used in ES6 (not supported by all browsers)
+
+# Coercion
+Converting a value from one type to another (for example: convert string to number)
+
+```javascript
+
+var a = 1 + '2';
+/*
+  treated as if two strings, 1 is coerced
+  coercion converted 1 to '1'
+  Javascript engine tries to guess what you want
+*/
+  console.log(a); //outputs '12'
+
+```
+
+## Comparison Operators
+99% of the time should be using ===/!==
+===/!== should be your default
+
+* use Object.is, if available
+
+```javascript
+
+console.log(3 < 2 < 1); // returns true
+// 3 < 2 returns false
+// false < 1, coercion does Number(false) which is 0, 0 < 1, returns true
+
+console.log(1 < 2 < 3); // returns true
+// 1 < 2 is true, true is 1, 1 < 3, returns true
+
+Number(undefined) // NaN
+Number(null) // 0
+Number("") // 0
+
+3 == 3 //=> true
+3 == '3' //=> true
+false == 0 //=> true
+null == 0 //=> false - null not coerced in comparison using ==
+
+// triple === does not coerce
+false === 0 //=> false
+'3' === 3 //=> false
+'3' === '3' //=> true
+
+```
