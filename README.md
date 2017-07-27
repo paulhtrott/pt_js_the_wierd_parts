@@ -163,3 +163,18 @@ function greet(name) {
 greet(); // outputs 'Paul T.', thanks to coercion
 
 ```
+
+#### Framework Default Values
+
+```javascript
+
+// Stop Clashing
+// Javascript Frameworks could collide with one another
+// Should check Global Object before name collions are caused, exclude yourself, and don't override if it exists
+
+// In this case, checking to see if libraryName variable is already set on the Global Object,
+// if it is, leave it alone, if not, change it as you see fit
+
+window.libraryName = window.libraryName || "Lib 2";
+
+```
