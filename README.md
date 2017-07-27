@@ -119,3 +119,47 @@ false === 0 //=> false
 '3' === '3' //=> true
 
 ```
+
+### Existence and Booleans
+
+```javascript
+
+Boolean(null) //=> false
+Boolean(undefined) //=> false
+Boolean("") //=> false
+Boolean(NaN) //=> false
+Boolean(0) //=> false
+
+var a;
+// goes out to internet the looks for a value,
+// if a is any of the above, it will be false
+// a = the return value
+
+a = "found it";
+//if a equaled 0, assuming that was a valid return value, have to check for that value
+a = 0;
+
+if (a || a === 0) {
+  console.log("something is there");
+}
+
+```
+
+### Default Values
+
+```javascript
+
+function greet(name) {
+  console.log('Hello' + name);
+}
+
+greet(); // outputs 'Hello undefined', thanks to coercion
+
+function greet(name) {
+  name = name || "Paul T."; // if name does not exist, give me something different back
+  console.log('Hello' + name);
+}
+
+greet(); // outputs 'Paul T.', thanks to coercion
+
+```
