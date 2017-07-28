@@ -178,3 +178,153 @@ greet(); // outputs 'Paul T.', thanks to coercion
 window.libraryName = window.libraryName || "Lib 2";
 
 ```
+
+# Objects and Functions
+## Objects and the dot
+An Object is a collection of key/value pairs, sitting in memory
+Object can have a Primitive (property), Another Object (property), Functions (method)
+Each property/method has references in memory.
+
+```javascript
+
+var person = new Object(); // better ways to do this, this is example for now
+person["firstname"] = "Tony";
+person["lastname"] = "Trott";
+
+var firstNameProperty = "firstname";
+
+console.log(person);
+console.log(person[firstNameProperty]);
+
+console.log(person.firstname);
+console.log(person.lastname);
+
+person.address = new Object(); // not the preferred way to instantiate an object
+
+person.address.street = "1004 Road Street";
+person.address.city = "New York";
+person.address.state = "New York";
+person.address.zipcode = "90210";
+
+console.log(person.address);
+console.log(person['address']['state']);
+
+```
+
+```javascript
+
+// Object literal Syntax
+
+var person = {}; // object literal - short hand to call new Object();
+
+var person = { firstname: 'Tony', lastname: 'Trott' }; // object literal - short hand to call new Object(); and initialize with values
+
+var person = {
+  firstname: 'Tony',
+  lastname: 'Trott',
+  address: {
+    street: '123 Fancy Street',
+    city: 'Newark',
+    state: 'New Jersey'
+  }
+}; // preferred way to create an object
+
+function greet(person) {
+  console.log('Hi ' + person.firstname);
+}
+
+greet(Tony);
+
+greet({
+  firstname: 'Nicki',
+  lastname: 'Jane'
+});
+
+Tony.address2 = {
+  street: '9 Fancy Road'
+}
+
+console.log(Tony);
+
+```
+
+# Faking Namespaces
+Namespace is a container for variables and functions, keeps variables and functions with same name seperate.
+Javascript doesn't have namespaces, so it is faked
+
+```javascript
+
+var greet = 'Hello!';
+var greet = 'Hola!';
+
+console.log(greet); //outputs Hola!
+
+// just a container, no real functionality
+var english = {};
+var spanish = {};
+
+english.greet = 'Hello!';
+spanish.greet = 'Hola!';
+
+console.log(english);
+console.log(spanish);
+
+english = {
+  greetings: {
+    basic: 'Hello!'
+  }
+}
+
+console.log(english);
+
+```
+
+# JavaScript Object Notation (JSON)
+JSON is inspired by object literals, but they are not the exact same thing.
+
+```javascript
+
+// NOT the same thing, just Similar
+
+var objectLiteral = {
+  firstname: 'Mary',
+  isAProgrammer: true
+}
+
+console.log(objectLiteral);
+
+// property names have to be  wrapped in quotes for JSON
+// valid JSON
+// {
+//   "firstname": "Jane",
+//   "isAProgrammer": true
+// }
+
+console.log(JSON.stringify(objectLiteral));
+
+var jsonValue = JSON.parse('{ "firstname": "Mary", "isAProgrammer": true }');
+
+console.log(jsonValue);
+
+```
+
+# Functions Are Objects
+First Class Functions, everything you can do with other types you can do with functions
+Can assign them to variables, pass them around and create them on the fly
+A function is just a special type of object, can attache a Primitive, Object, Function, Can have a Name (optional: can be anonymous), Code property (where actual lines of code sit). The function is an object with other properties and the code is another property. The code is invocable '()'.
+
+```javascript
+
+// Functions are objects
+
+function greet() {
+  console.log('Hi!'); // this is stored in the CODE property
+}
+
+greet.language = 'english'; // can add properties to the function object
+
+console.log(greet);
+console.log(greet.language);
+greet(); // code is invoked ()
+
+```
