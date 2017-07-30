@@ -535,3 +535,110 @@ console.log(arr);
 arr[4](arr[3].name)
 
 ```
+
+# Arguments and Spreads
+parameters you pass to a function, javascript gives a keyword of that same name that contains them all.
+
+```javascript
+
+// arguments keyword - will eventually be deprecated
+
+function greet(firstname, lastname, language) {
+  // to default the value if language = 'en' in the arguments doesn't work.
+  // function greet(firstname, lastname, language = 'en') {
+  language = language || 'en';
+
+  if (arguments.length === 0) {
+    console.log('missing parameters!');
+    return;
+  }
+  console.log('arg 0: ' + arguments[0]);
+  console.log(firstname);
+  console.log(lastname);
+  console.log(language);
+  console.log(arguments);
+  console.log('---------');
+}
+
+greet(); /// hoisting sets the arguments to undefined
+greet("John");
+greet("John", "Doe");
+greet("John", "Doe", 'es');
+
+// spreads - instead of arguments keyword
+// not supported in all browsers as of right now
+
+function spreads(name, ...more) {
+  console.log(name);
+  console.log(more);
+  console.log('more 0: ' + more[0]);
+  console.log('more 1: ' + more[1]);
+}
+
+spreads('paul', 'nicki', 'synjon'); // paul assigned to name, nicki/synjon assigned to more
+
+```
+
+## Function overloading
+This doesn't really work in javascript like it does in other languages
+because of the way javascript handles functions
+
+```javascript
+
+function greet(firstname, lastname, language) {
+  language = language || 'en';
+
+  if (language === 'en') {
+    console.log('Hello ' + firstname + ' ' + lastname);
+  }
+
+  if (language === 'es') {
+    console.log('Hola ' + firstname + ' ' + lastname);
+  }
+
+}
+
+//this is one simple way to overlaod
+//
+function greetEnglish(firstname, lastname) {
+  greet(firstname, lastname, 'en');
+}
+
+function greetSpanish(firstname, lastname) {
+  greet(firstname, lastname, 'es');
+}
+
+greetEnglish('John', 'Doe');
+greetSpanish('John', 'Doe');
+
+```
+
+# Syntax Parsers
+The code we write is parsed/translated by the javascript engine.
+It parses character by character, making assumptions and making changes to code before it is executed.
+We have to think how the parser in validating the code.
+
+# Automatic Semicolon Insertion
+Semicolons are optional. The javascript engine parses and finishes a line it inserts a semicolon automatic when it sees a carriage return.
+ALWAYS PUT YOUR OWN SEMICOLONS. Do not let the engine do this for you.
+
+```javascript
+
+function getPerson() {
+  return //=> parser will enter a semi colon here (in some browsers), function will just return undefined, in later versions of chrome this works as you expect
+  {
+    firstname: 'Tony'
+  }
+}
+
+console.log(getPerson()); //=> returns undefined
+
+function getPerson() {
+  return { //=> do it like this
+    firstname: 'Tony'
+  }
+}
+
+console.log(getPerson()); //=> returns the object
+
+```
