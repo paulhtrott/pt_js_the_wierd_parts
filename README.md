@@ -642,3 +642,114 @@ function getPerson() {
 console.log(getPerson()); //=> returns the object
 
 ```
+
+## Whitespace
+Syntax parser is liberal with the amount of space you can use. Whitespace is ignored. Frameworks and libraries tend to use lots of whitespace and comments. Sometimes that can make it hard to read, but you have to learn to ignore the white space and pay attention to the code.
+It is important to comment your code and give whitespace to your code is easier to read an understand.
+
+# Immediately Invoked Function Expressions (IIFE)S
+Invoking a function expression on the fly
+
+```javascript
+
+// Immediately Invoked Function Expressions
+
+// function statement
+function greet(name) {
+  console.log('Hello ' + name);
+}
+
+greet('John');
+
+// function expression
+var greetFunc = function(name) {
+  console.log('Hello ' + name);
+};
+
+greetFunc('Paul');
+
+// invoked function expression, immediately after creation
+var greeting = function(name) {
+  return 'Hello ' + name;
+}('Nick');
+
+console.log(greeting); //=> returns a string 'Hello Nick'
+
+// When you want an expression, something that returns a value
+// the () force javascript parser to believe the function is an expression
+(function(name) {
+  return 'Hello ' + name;
+});
+
+// can also be an immediately invoked function expression
+// classic example of an IIFE
+// This style is in every major framework and library
+// This is just executing code on the fly
+var firstname = 'Peter';
+
+(function(name) {
+  var greeting = 'Inside IIFE - Hello ';
+  console.log(greeting + name);
+}(firstname));
+
+```
+
+## IIFE and Safe Code
+When the code is first loaded the Global Execution context is created.
+It is empty until it hits the IIFE line.
+Then a new execution context is created for the anonymous function.
+The executed function variables do not touch the global environment.
+
+```javascript
+
+// One file
+var firstname = 'Peter';
+
+(function(name) {
+  var greeting = 'Hello '; //=> does not touch global context greeting variable
+  console.log(greeting + name);
+}(firstname)); // the code wrapped in parenthesis and function expression is protected
+
+console.log(greeting); // outputs 'Hola!', which was added to the global context
+
+// Second file
+var greeting = 'Hola!';
+```
+
+If you want excess to the global context you pass the global object to the expression.
+This effects the global object intentionally.
+
+```javascript
+
+var firstname = 'Peter';
+
+(function(global, name) {
+  var greeting = 'Hello '; //=> does not touch global context greeting variable
+  global.greeting = 'Howdy!'; // add a variable to the global window
+  console.log(greeting + name);
+}(window, firstname)); // pass in window object (global context)
+
+```
+
+# Understanding Closures
+Variables still accessible in memory, after execution context are destroyed.
+
+```javascript
+
+function greet(whattosay) {
+
+  // whattosay variable is still stored in memory after greet execution context is done.
+  return function(name) {
+    // even though the execution content is gone, the whattosay variable is still
+    // sitting in memory, the javascript engine makes sure the variable can still be found
+    // This is closure. The javascript engine just makes sure it still works.
+    // Scope is left intact.
+    console.log(whattosay + ' ' + name);
+  }
+
+}
+
+var sayHi = greet('Hi');
+sayHi('Peter'); //=> 'Hi Peter'
+
+```
